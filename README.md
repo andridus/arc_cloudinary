@@ -16,16 +16,6 @@ defp deps do
 end
 ```
 
-You must also add `arc_cloudinary` as startup dependencies your application's `mix.exs` file:
-
-```elixir
-def application do
-  [mod: {MyApp, []},
-   applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                 :phoenix_ecto, :postgrex, :arc_cloudinary]]
-end
-```
-
 Then run `mix deps.get` in your shell to fetch the dependencies.
 
 ### Configuration
