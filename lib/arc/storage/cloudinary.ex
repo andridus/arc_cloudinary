@@ -6,6 +6,12 @@ defmodule Arc.Storage.Cloudinary do
     full_path = Path.join(destination_dir, file.file_name)
 
     Cloudex.upload(file.path, %{ public_id: file.file_name })
+    |> case do
+      {:ok, result} ->
+        IO.inspect result
+        {:ok, result}
+      {:error, reason} -> {:error, reason} 
+    end
 
   end
 
