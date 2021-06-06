@@ -6,6 +6,8 @@ defmodule Arc.Storage.Cloudinary do
     full_path = Path.join(destination_dir, file.file_name)
 
     Cloudex.upload(file.path, %{ public_id: file.file_name })
+    |> IO.inspect
+
   end
 
   def url(definition, version, {file, scope}, options \\ []) do
