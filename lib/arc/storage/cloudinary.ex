@@ -11,7 +11,12 @@ defmodule Arc.Storage.Cloudinary do
   end
 
   def url(definition, version, {file, scope}, options \\ []) do
-    Cloudex.Url.for(file.file_name, definition.cloudinary_transform(version))
+    Cloudex.Url.for(file.file_name, transform(version))
+  end
+
+  defp transform(version) do
+    IO.inspect version
+    %{width: 400, height: 300}
   end
 
 end
