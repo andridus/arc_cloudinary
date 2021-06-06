@@ -6,13 +6,6 @@ defmodule Arc.Storage.Cloudinary do
     full_path = Path.join(destination_dir, file.file_name)
 
     Cloudex.upload(file.path, %{ public_id: file.file_name })
-    |> case do
-      {:ok, result} ->
-        IO.inspect result
-        {:ok, result}
-      {:error, reason} -> {:error, reason} 
-    end
-
   end
 
   def delete(definition, version, {file, scope}) do
@@ -20,7 +13,11 @@ defmodule Arc.Storage.Cloudinary do
   end
 
   def url(definition, version, {file, scope}, options \\ []) do
-    Cloudex.Url.for(file.file_name, version)
+    protocol = case options do
+      [protocol: protocol] -> protocol
+      _ -> "http"
+    end 
+    protocol<>":"<>Cloudex.Url.for(file.file_name, version)
   end
 
 end
