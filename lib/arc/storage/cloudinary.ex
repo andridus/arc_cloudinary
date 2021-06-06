@@ -3,7 +3,7 @@ defmodule Arc.Storage.Cloudinary do
   def put(definition, version, {file, scope}) do
     version
     destination_dir = definition.storage_dir(version, {file, scope})
-    filename = Path.basename(file.filename, Path.extname(file.filename))
+    filename = Path.basename(file.file_name, Path.extname(file.file_name))
     Cloudex.upload(file.path, %{ public_id: filename })
   end
 
