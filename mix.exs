@@ -5,7 +5,7 @@ defmodule ArcCloudinary.MixProject do
     [
       app: :arc_cloudinary,
       version: "0.0.1",
-      elixir: "~> 1.12",
+      elixir: "~> 1.7.3",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
