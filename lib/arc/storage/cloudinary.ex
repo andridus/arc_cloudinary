@@ -9,7 +9,7 @@ defmodule Arc.Storage.Cloudinary do
 
   def delete(definition, version, {file, scope}) do
     filename = Path.basename(file.file_name, Path.extname(file.file_name))
-    Cloudex.delete(filename) |> IO.inspect
+    Cloudex.delete(filename)
   end
 
   def url(definition, version, {file, scope}, options \\ []) do
