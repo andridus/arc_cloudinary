@@ -8,7 +8,6 @@ defmodule ArcCloudinary.Application do
   def start(_type, _args) do
     children = [
       {ArcCloudinary.CloudexStart, []}
-      # {T.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
