@@ -11,7 +11,7 @@ Add the latest stable release to your `mix.exs` file:
 ```elixir
 defp deps do
   [
-    arc_cloudinary: "~> 0.0.1"
+    arc_cloudinary: "~> 0.1.0"
   ]
 end
 ```
