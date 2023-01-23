@@ -1,5 +1,5 @@
 defmodule ArcCloudinary.Application do
- 
+
   @moduledoc false
 
   use Application
