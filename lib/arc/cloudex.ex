@@ -9,12 +9,12 @@ defmodule Arc.Cloudex do
       start %{api_key: "key", secret: "s3cr3t", cloud_name: "heaven"}
   """
   @spec start(settings :: map) :: {:ok, pid}
-  defdelegate start(settings), to: Cloudex.Settings
+  defdelegate start(settings), to: Arc.Cloudex.Settings
 
   @type upload_result ::
-          {:ok, Cloudex.UploadedImage.t()}
+          {:ok, Arc.Cloudex.UploadedImage.t()}
           | {:error, any}
-          | [{:ok, Cloudex.UploadedImage.t()} | {:error, any}]
+          | [{:ok, Arc.Cloudex.UploadedImage.t()} | {:error, any}]
 
   @doc ~S"""
     Uploads a (list of) image file(s) and/or url(s) to cloudinary
@@ -28,7 +28,7 @@ defmodule Arc.Cloudex do
 
     upload_results =
       valid_list
-      |> Enum.map(&Task.async(Cloudex.CloudinaryApi, :upload, [&1, options]))
+      |> Enum.map(&Task.async(Arc.Cloudex.CloudinaryApi, :upload, [&1, options]))
       |> Enum.map(&Task.await(&1, 60_000))
 
     result = upload_results ++ invalid_list
@@ -49,7 +49,7 @@ defmodule Arc.Cloudex do
   Delete an image
   """
   def delete(item, opts \\ %{}) do
-    Cloudex.CloudinaryApi
+    Arc.Cloudex.CloudinaryApi
     |> Task.async(:delete, [item, opts])
     |> Task.await(60_000)
   end
@@ -58,7 +58,7 @@ defmodule Arc.Cloudex do
   Deletes a prefix
   """
   def delete_prefix(prefix) do
-    Cloudex.CloudinaryApi
+    Arc.Cloudex.CloudinaryApi
     |> Task.async(:delete_prefix, [prefix])
     |> Task.await(60_000)
   end
